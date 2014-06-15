@@ -1,0 +1,97 @@
+
+strategize.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+bullets/bullet1
+  rotate: false
+  xy: 1, 1
+  size: 18, 24
+  orig: 18, 24
+  offset: 0, 0
+  index: 0
+bullets/bullet1
+  rotate: false
+  xy: 21, 1
+  size: 18, 24
+  orig: 18, 24
+  offset: 0, 0
+  index: 1
+bullets/bullet1
+  rotate: false
+  xy: 41, 1
+  size: 18, 24
+  orig: 18, 24
+  offset: 0, 0
+  index: 2
+bullets/bullet1
+  rotate: false
+  xy: 61, 1
+  size: 18, 24
+  orig: 18, 24
+  offset: 0, 0
+  index: 3
+
+strategize2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+click
+  rotate: false
+  xy: 1, 1
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+default
+  rotate: false
+  xy: 63, 45
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+
+strategize3.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+tanks/tank1
+  rotate: false
+  xy: 1, 1
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 0
+tanks/tank1
+  rotate: false
+  xy: 131, 1
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 1
+tanks/tank1
+  rotate: false
+  xy: 261, 1
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 2
+tanks/tank1
+  rotate: false
+  xy: 391, 1
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 3
+
+strategize4.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+weapons/weapon1
+  rotate: false
+  xy: 1, 1
+  size: 50, 104
+  orig: 50, 104
+  offset: 0, 0
+  index: -1

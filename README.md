@@ -1,4 +1,4 @@
-Pucaj
+Strategize
 =====
 
 Experimentations with Android Development Studio and libGDX
