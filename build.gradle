@@ -15,7 +15,7 @@ allprojects {
     version = '1.0'
     ext {
         appName = 'Strategize'
-        gdxVersion = '1.1.0'
+        gdxVersion = '1.2.0'
         roboVMVersion = '0.0.13'
         artemisVersion = '0.6.0'
     }
