@@ -217,9 +217,6 @@ public class AISystem extends EntityProcessingSystem {
         // Get the stats of the entity doing this action
         Stats source = sm.get(e);
 
-        // If the action costs too much, we won't even consider this plan
-        if (source.energy < action.cost) return 0;
-
         // get the target field of this action
         Array<Pair> field = action.fieldCalculator.getField(plan.actionTarget, action);
 

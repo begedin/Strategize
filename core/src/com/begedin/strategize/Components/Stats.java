@@ -23,7 +23,7 @@ public class Stats extends Component {
     public int energy, maxEnergy, maxEnergy_modifier;
 
     public CombatAction regularAttack;
-    public CharacterClassFactory.CharacterClass primaryClass, secondaryClass;
+    public CharacterClassFactory.CharacterClass characterClass;
 
     public String name;
 
@@ -52,10 +52,9 @@ public class Stats extends Component {
 
         name = names[MathUtils.random(names.length-1)];
 
-        regularAttack = new CombatAction("Attack", 7, 0, 90, 1, 1);
+        regularAttack = new CombatAction("Attack", 7, 90, 1, 1);
 
-        primaryClass = CharacterClassFactory.technician();
-        secondaryClass = CharacterClassFactory.mechInfantry();
+        characterClass = CharacterClassFactory.defaultClass();
 
         actionPoints = 0;
     }

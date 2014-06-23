@@ -15,39 +15,14 @@ import com.begedin.strategize.Maps.MapTools;
 import com.begedin.strategize.Utils.CustomMath;
 import com.begedin.strategize.Utils.Pair;
 
-/**
- * Created by Nikola Begedin on 31.12.13..
- */
 public class ActionFactory {
 
-    //public Action3(int strength, int mpCost, int baseProbability, int range, int field)
-
-    public static CombatAction pointBlankNormal(String name, int damage, int baseProbability) {
-        return new CombatAction(name, damage, 0, baseProbability, 1, 1);
+    public static CombatAction offensive(String name, int damage, int baseProbability, int range) {
+        return new CombatAction(name, damage, baseProbability, range, 1);
     }
 
-    public static CombatAction pointBlankSkill(String name, int damage, int cost, int baseProbability, int field) {
-        return new CombatAction(name, damage, cost, baseProbability, 1, field,
-                skillAttackActionProcessor(),
-                skillAttackScoreCalculator(),
-                skillFieldCalculator(),
-                skillRangeCalculator());
-    }
-
-    public static CombatAction rangedNormal(String name, int damage, int baseProbability, int range) {
-        return new CombatAction(name, damage, 0, baseProbability, range, 1);
-    }
-
-    public static CombatAction rangedSkill(String name, int damage, int cost, int baseProbability, int range, int field){
-        return new CombatAction(name, damage, cost, baseProbability, range, field,
-                skillAttackActionProcessor(),
-                skillAttackScoreCalculator(),
-                skillFieldCalculator(),
-                skillRangeCalculator());
-    }
-
-    public static CombatAction repair(String name, int damage, int cost, int range, int field) {
-        return new CombatAction(name, damage, cost, 100, range, field,
+    public static CombatAction repair(String name, int damage, int range, int field) {
+        return new CombatAction(name, damage, 100, range, field,
                 repairActionProcessor(),
                 repairScoreCalculator(),
                 skillFieldCalculator(),
@@ -61,7 +36,6 @@ public class ActionFactory {
             @Override
             public void process(Entity sourceE, Array<Entity> targets, CombatAction action) {
                 Stats source = sourceE.getComponent(Stats.class);
-                source.energy -= action.cost;
                 source.xp += 10;
 
                 int cureAmt;
@@ -83,11 +57,8 @@ public class ActionFactory {
 
             @Override
             public ImmutableBag<Float> calculateScore(Stats source, ImmutableBag<Stats> targets, CombatAction action) {
-                if (action.cost > source.energy) return null;
 
                 Bag<Float> scoreBag = new Bag<Float>();
-                // Get cost for source
-                scoreBag.add(0.1f*(float)action.cost / (float)source.energy);
 
                 // Get score for each target
                 for (int i = 0; i < targets.size(); i++) {
@@ -108,7 +79,6 @@ public class ActionFactory {
             @Override
             public void process(Entity sourceE, Array<Entity> targets, CombatAction action) {
                 Stats source = sourceE.getComponent(Stats.class);
-                source.energy -= action.cost;
                 source.xp += 10;
 
                 int dmgAmt;
@@ -131,11 +101,8 @@ public class ActionFactory {
 
             @Override
             public ImmutableBag<Float> calculateScore(Stats source, ImmutableBag<Stats> targets, CombatAction action) {
-                if (action.cost > source.energy) return null;
 
                 Bag<Float> scoreBag = new Bag<Float>();
-                // Get cost for source
-                scoreBag.add(0.1f*(float)action.cost / (float)source.energy);
 
                 // Get score for each target
                 for (int i = 0; i < targets.size(); i++) {
@@ -151,7 +118,6 @@ public class ActionFactory {
         };
         return sc;
     }
-
 
     private static FieldCalculator skillFieldCalculator() {
         FieldCalculator fc = new FieldCalculator() {

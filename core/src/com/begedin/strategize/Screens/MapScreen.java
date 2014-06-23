@@ -7,12 +7,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.begedin.strategize.Components.AI;
@@ -38,10 +43,8 @@ import com.begedin.strategize.Systems.SpriteRenderSystem;
 import com.begedin.strategize.Maps.MapTools;
 import com.begedin.strategize.Systems.TurnManagementSystem;
 import com.begedin.strategize.Utils.Pair;
+import sun.security.ssl.Debug;
 
-/**
- * Created by Nikola Begedin on 24.11.13..
- */
 public class MapScreen extends AbstractScreen {
 
     public static GameMap gameMap;
@@ -92,7 +95,7 @@ public class MapScreen extends AbstractScreen {
         activeEntityCell = new Pair(0,0);
         gameMap  = new GameMap();
 
-        stage = new Stage();
+        stage = new Stage(new FitViewport(game.WINDOW_WIDTH, game.WINDOW_HEIGHT));
 
         inputManager = new InputManager(camera, world, this, stage, gameMap);
 
@@ -147,7 +150,7 @@ public class MapScreen extends AbstractScreen {
     public void resize(int width, int height) {
         super.resize(width, height);
         hudCam.setToOrtho(false, width, height);
-        stage.setViewport(new ScalingViewport(Scaling.fit, width, height));
+        stage.getViewport().update(width, height);
     }
 
     @Override

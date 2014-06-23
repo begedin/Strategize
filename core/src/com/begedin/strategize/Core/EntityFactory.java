@@ -73,30 +73,10 @@ public class EntityFactory {
         e.addComponent(new Movable(10f, 0.14f));
 
         Abilities abilities = new Abilities();
-        int abilityRoll = MathUtils.random(0,3) * 0;
-        if (abilityRoll == 0) {
-            sprite.name = "tanks/tank1";
-            abilities.actions.add(ActionFactory.pointBlankNormal("Shot", 5, 85));
-            abilities.actions.add(ActionFactory.repair("Emergency supplies",2, 1, 0, 1));
-            abilities.actions.add(ActionFactory.pointBlankSkill("Spin Attack", 4, 3, 90, 1));
-        }
-        else if (abilityRoll == 1) {
-            sprite.name = "tanks/tank1";
-            abilities.actions.add(ActionFactory.rangedNormal("Shot", 4, 70, 4));
-            abilities.actions.add(ActionFactory.pointBlankNormal("Ram", 2, 80));
-        }
-        else if (abilityRoll == 2) {
-            sprite.name = "tanks/tank1";
-            abilities.actions.add(ActionFactory.rangedSkill("Grenade", 3, 4, 80, 3, 2));
-            abilities.actions.add(ActionFactory.rangedSkill("Boosted shot", 4, 4, 90, 3, 1));
-            abilities.actions.add(ActionFactory.pointBlankNormal("Shotgun", 2, 70));
-        }
-        else {//if (abilityRoll == 3) {
-            sprite.name = "tanks/tank1";
-            abilities.actions.add(ActionFactory.repair("Repair drone", 4, 4, 3, 1));
-            abilities.actions.add(ActionFactory.repair("Resupply", 3, 6, 3, 2));
-            abilities.actions.add(ActionFactory.pointBlankNormal("Ram", 1, 65));
-        }
+        sprite.name = "tanks/tank1";
+        abilities.actions.add(ActionFactory.offensive("Fire", 5, 85, 5));
+        abilities.actions.add(ActionFactory.repair("Repair",2, 5, 1));
+
         e.addComponent(abilities);
         e.addComponent(new Stats());
         e.addComponent(new AI());
@@ -124,30 +104,10 @@ public class EntityFactory {
         e.addComponent(new Movable(10f, 0.14f));
 
         Abilities abilities = new Abilities();
-        int abilityRoll = MathUtils.random(0,3) * 0;
-        if (abilityRoll == 0) {
-            sprite.name = "tanks/tank1";
-            abilities.actions.add(ActionFactory.pointBlankNormal("Shot", 5, 85));
-            abilities.actions.add(ActionFactory.repair("Emergency supplies",2, 1, 0, 1));
-            abilities.actions.add(ActionFactory.pointBlankSkill("Spin Attack", 4, 3, 90, 1));
-        }
-        else if (abilityRoll == 1) {
-            sprite.name = "tanks/tank1";
-            abilities.actions.add(ActionFactory.rangedNormal("Shot", 4, 70, 4));
-            abilities.actions.add(ActionFactory.pointBlankNormal("Ram", 2, 80));
-        }
-        else if (abilityRoll == 2) {
-            sprite.name = "tanks/tank1";
-            abilities.actions.add(ActionFactory.rangedSkill("Grenade", 3, 4, 80, 3, 2));
-            abilities.actions.add(ActionFactory.rangedSkill("Boosted shot", 4, 4, 90, 3, 1));
-            abilities.actions.add(ActionFactory.pointBlankNormal("Shotgun", 2, 70));
-        }
-        else {//if (abilityRoll == 3) {
-            sprite.name = "tanks/tank1";
-            abilities.actions.add(ActionFactory.repair("Repair drone", 4, 4, 3, 1));
-            abilities.actions.add(ActionFactory.repair("Resupply", 3, 6, 3, 2));
-            abilities.actions.add(ActionFactory.pointBlankNormal("Ram", 1, 65));
-        }
+        sprite.name = "tanks/tank1";
+        abilities.actions.add(ActionFactory.offensive("Shoot", 6, 65, 6));
+        abilities.actions.add(ActionFactory.repair("Repair",4, 2, 1));
+
         e.addComponent(abilities);
         e.addComponent(new Stats());
         e.addComponent(new AI());
@@ -173,8 +133,8 @@ public class EntityFactory {
         e.addComponent(sprite);
 
         Abilities abilities = new Abilities();
-        abilities.actions.add(ActionFactory.pointBlankNormal("Attack",4,90));
-        abilities.actions.add(ActionFactory.repair("Emergency repair",2, 1, 0, 1));
+        abilities.actions.add(ActionFactory.offensive("Attack",4,90, 5));
+        abilities.actions.add(ActionFactory.repair("Supply Drop",2, 7, 3));
 
         SpriteAnimation anim = new SpriteAnimation();
         anim.playMode = Animation.PlayMode.LOOP_PINGPONG;

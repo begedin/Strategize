@@ -14,7 +14,8 @@ import com.begedin.strategize.Utils.Pair;
  * Created by Nikola Begedin on 31.12.13..
  */
 public class CombatAction {
-    public CombatAction(String name, int damage, int cost, int baseProbability, int range, int field,
+
+    public CombatAction(String name, int damage, int baseProbability, int range, int field,
                    ActionProcessor actionProcessor,
                    ScoreCalculator scoreCalculator,
                    FieldCalculator fieldCalculator,
@@ -22,7 +23,6 @@ public class CombatAction {
         this.name = name;
         this.damage = damage;
         this.baseProbability = baseProbability;
-        this.cost = cost;
         this.range = range;
         this.field = field;
         this.actionProcessor = actionProcessor;
@@ -31,11 +31,10 @@ public class CombatAction {
         this.rangeCalculator = rangeCalculator;
     }
 
-    public CombatAction(String name, int damage, int cost, int baseProbability, int range, int field) {
+    public CombatAction(String name, int damage, int baseProbability, int range, int field) {
         this.name = name;
         this.damage = damage;
         this.baseProbability = baseProbability;
-        this.cost = cost;
         this.range = range;
         this.field = field;
 
@@ -43,7 +42,6 @@ public class CombatAction {
             @Override
             public void process(Entity sourceE, Array<Entity> targets, CombatAction action) {
                 Stats source = sourceE.getComponent(Stats.class);
-                source.energy -= action.cost;
                 boolean hitOnce = false;
 
                 for (Entity targetE : targets) {
@@ -69,13 +67,8 @@ public class CombatAction {
             @Override
             public ImmutableBag<Float> calculateScore(Stats source, ImmutableBag<Stats> targets, CombatAction action) {
                 // If we can't even cast it, then don't bother
-                int MP = source.energy;
-                if (action.cost > MP) return null;
 
                 Bag<Float> scoreBag = new Bag<Float>();
-
-                // Get the cost to the source
-                scoreBag.add(0.1f*(float)action.cost / (float)MP);
 
                 // Get the scores for each target
                 for (int i = 0; i < targets.size(); i++) {
@@ -108,7 +101,7 @@ public class CombatAction {
     }
 
     public String name;
-    public int cost, range, field, baseProbability, damage;
+    public int range, field, baseProbability, damage;
 
     public ActionProcessor actionProcessor;
     public ScoreCalculator scoreCalculator;
